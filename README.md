@@ -2,11 +2,17 @@
 
 This project compares 4 classification algorithms on the UCI Bank Marketing dataset:
 
-- k-Nearest Neighbors (k-NN)
-- Logistic Regression
-- Decision Tree
-- Support Vector Machine (SVM)
-
+- Exploratory Data Analysis (EDA)  
+- Feature engineering  
+- One-Hot Encoding + Scaling  
+- Train/Test Split  
+- Baseline modeling  
+- Model comparison across:
+  - Logistic Regression  
+  - k-Nearest Neighbors (KNN)  
+  - Decision Tree Classifier  
+  - Support Vector Machine (SVM)
+    
 ## Business Problem
 
 A Portuguese bank wants to predict which customers are likely to subscribe to a term deposit after a telemarketing call.  
@@ -15,7 +21,7 @@ The bank can prioritize calls, cut expenses, and boost campaign efficacy with th
 ## Files
 
 - notebook: bank_marketing_classifiers.ipynb  (Main analysis and modeling notebook) 
-- data/bank-additional.csv (10% sample of the original UCI dataset)
+- data/bank-additional-full.csv (10% sample of the original UCI dataset)
 - data/bank-additional-names.txt (Feature descriptions) 
 
 ## Summary of Findings
@@ -27,7 +33,18 @@ The bank can prioritize calls, cut expenses, and boost campaign efficacy with th
 
 See the notebook for full details.
 
-## How to Run
-1. Create a virtual environment and install the requirements (scikit-learn, pandas, seaborn, matplotlib, etc.).
-2. Place the data files under data/.
-3. Open bank_marketing_classifiers.ipynb in Jupyter and run all cells.
+## Conclusions
+
+- The baseline model is not useful because it predicts only the majority class (“no”) with no ability to identify likely subscribers.
+- Logistic Regression and SVM both outperform KNN and Decision Trees on this dataset.
+- Logistic Regression offers:
+      * Strong predictive performance
+      * Good stability across train/test
+      * Fast computation
+      * Clear interpretability for business users
+- Decision Trees provide interpretability but tend to overfit.
+- KNN struggles due to high dimensionality after one-hot encoding.
+
+##  Recommendations
+- Deploy Logistic Regression as the first production-ready model.
+- Use probability thresholds like target top 20% highest scores to prioritize calls.
